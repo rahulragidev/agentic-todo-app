@@ -1,0 +1,10 @@
+#!/bin/sh
+# Blocking pre-commit gate: full check chain + React Doctor on staged files.
+# Installed via: git config core.hooksPath .githooks
+set -e
+
+echo "pre-commit: npm run check"
+npm run --silent check
+
+echo "pre-commit: react-doctor staged scan"
+./node_modules/.bin/react-doctor --staged --blocking warning
